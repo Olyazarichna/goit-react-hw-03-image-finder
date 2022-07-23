@@ -29,7 +29,7 @@ ImageGallery.propTypes = {
       webformatURL: PropTypes.string,
       largeImageURL: PropTypes.string,
       tags: PropTypes.string,
-    })
+    }).isRequired
   ),
-  onClick: PropTypes.func,
+  onClick: PropTypes.func.isRequired,
 };

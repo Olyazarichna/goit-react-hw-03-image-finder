@@ -22,7 +22,9 @@ export class Searchbar extends Component {
     this.props.onSubmit(this.state.search);
     this.setState({ search: '' });
   };
-
+  static propTypes = {
+    onSubmit: PropTypes.func.isRequired,
+  };
   render() {
     return (
       <header className={css.Searchbar}>
@@ -46,7 +48,3 @@ export class Searchbar extends Component {
     );
   }
 }
-
-Searchbar.propTypes = {
-  onSubmit: PropTypes.func,
-};

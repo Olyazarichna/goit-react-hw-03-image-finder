@@ -35,11 +35,19 @@ export class App extends Component {
               webformatURL: img.webformatURL,
               tags: img.tags,
             };
+            console.log(images);
             return images;
           });
+          console.log(image);
           return image;
         })
-        .then(images => this.setState({ images }))
+        .then(image => {
+          console.log(image);
+        
+          this.setState({ images: image})
+        }
+          
+        )
         .catch(error => {
           alert("oops, something wrong, try again");
           console.log(error.message)})
@@ -62,6 +70,7 @@ export class App extends Component {
     this.setState(prevState => {
       return {
         page: prevState.page + 1,
+       
       };
     });
   };

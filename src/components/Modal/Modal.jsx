@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import css from './Modal.module.css';
 
 class Modal extends Component {
-
   componentDidMount() {
     window.addEventListener('keydown', this.onEsc);
   }
@@ -19,20 +18,24 @@ class Modal extends Component {
   overlayHidden = () => {
     this.props.onCloseModal();
   };
+  static propTypes = {
+    onCloseModal: PropTypes.func.isRequired,
+    src: PropTypes.string.isRequired,
+  };
   render() {
     return (
       <div className={css.Overlay} onClick={this.overlayHidden}>
         <div className={css.Modal}>
           <img src={this.props.src} alt="" />
-          <button className={css.BtnModalClose} onClick={this.props.toggleModal}>X</button>
+          <button
+            className={css.BtnModalClose}
+            onClick={this.props.toggleModal}
+          >
+            X
+          </button>
         </div>
       </div>
     );
   }
 }
 export default Modal;
-
-Modal.propTypes = {
-  onCloseModal: PropTypes.func,
-  src: PropTypes.string,
-};
