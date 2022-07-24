@@ -35,22 +35,21 @@ export class App extends Component {
               webformatURL: img.webformatURL,
               tags: img.tags,
             };
-            console.log(images);
+
             return images;
           });
-          console.log(image);
+
           return image;
         })
-        .then(image => {
-          console.log(image);
-        
-          this.setState({ images: image})
-        }
-          
-        )
+        .then(images => {
+          this.setState(prevState => ({
+            images: prevState.images.concat(images),
+          }));
+        })
         .catch(error => {
-          alert("oops, something wrong, try again");
-          console.log(error.message)})
+          alert('oops, something wrong, try again');
+          console.log(error.message);
+        })
         .finally(() => {
           this.setState({ isLoading: false });
         });
@@ -62,6 +61,7 @@ export class App extends Component {
       return {
         search,
         page: 1,
+        images: [],
       };
     });
   };
@@ -70,7 +70,6 @@ export class App extends Component {
     this.setState(prevState => {
       return {
         page: prevState.page + 1,
-       
       };
     });
   };
@@ -98,7 +97,7 @@ export class App extends Component {
             <Button onClick={this.loadMore} />
           </>
         )}
-        {isLoading && <Loader />}
+        {isLoading && <Loader className="Loader" />}
         {openModal && (
           <Modal onCloseModal={this.toggleModal} src={largeImageURL} />
         )}
